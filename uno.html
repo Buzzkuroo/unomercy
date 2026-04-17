@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNO Show 'Em No Mercy — Panduan Lengkap</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --red: #E8192C;
+            --yellow: #F5C000;
+            --blue: #0057B8;
+            --green: #00A651;
+            --black: #0d0d0d;
+            --dark: #141414;
+            --card-bg: #1a1a1a;
+            --text: #f0ece4;
+            --muted: #888;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--text);
+            font-family: 'Barlow', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 24px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 25, 44, 0.35) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(0, 87, 184, 0.25) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 80% 90%, rgba(245, 192, 0, 0.20) 0%, transparent 60%);
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255, 255, 255, 0.02) 60px, rgba(255, 255, 255, 0.02) 61px),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, 0.02) 60px, rgba(255, 255, 255, 0.02) 61px);
+        }
+
+        .hero-greeting {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(18px, 3vw, 26px);
+            color: var(--yellow);
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+            animation: fadeDown 0.7s ease both;
+            text-shadow: 0 0 30px rgba(245, 192, 0, 0.4);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            letter-spacing: 4px;
+            font-size: 11px;
+            padding: 6px 16px;
+            border-radius: 2px;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            animation: fadeDown 0.8s ease both;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(72px, 14vw, 160px);
+            line-height: 0.88;
+            letter-spacing: 4px;
+            animation: fadeDown 0.9s ease 0.1s both;
+        }
+
+        .hero h1 .line1 {
+            color: #fff;
+            display: block;
+        }
+
+        .hero h1 .line2 {
+            color: var(--red);
+            display: block;
+        }
+
+        .hero h1 .line3 {
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
+            display: block;
+        }
+
+        .hero-sub {
+            margin-top: 28px;
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 520px;
+            line-height: 1.65;
+            animation: fadeDown 1s ease 0.25s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 52px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeDown 1s ease 0.35s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            line-height: 1;
+            color: var(--yellow);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-hint svg {
+            opacity: 0.4;
+        }
+
+        /* ── SECTIONS ── */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+
+        .section-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1;
+            margin-bottom: 48px;
+            letter-spacing: 2px;
+        }
+
+        /* ── SEPARATOR ── */
+        .sep {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+            margin: 0 auto;
+            max-width: 200px;
+        }
+
+        /* ── OBJECTIVE ── */
+        .objective-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .obj-card {
+            background: var(--card-bg);
+            padding: 44px 36px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .obj-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .obj-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .obj-card.red::before {
+            background: var(--red);
+        }
+
+        .obj-card.yellow::before {
+            background: var(--yellow);
+        }
+
+        .obj-icon {
+            font-size: 42px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .obj-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .obj-desc {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* ── SETUP ── */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .step {
+            display: grid;
+            grid-template-columns: 64px 1fr;
+            gap: 24px;
+            align-items: start;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .step-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 52px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.1);
+            letter-spacing: 2px;
+        }
+
+        .step-content h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--yellow);
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* ── CARDS GRID ── */
+        .cards-section {
+            background: var(--dark);
+            padding: 90px 0;
+        }
+
+        .cards-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .cards-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 10px 22px;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 16px;
+        }
+
+        .card-item {
+            background: #1e1e1e;
+            border-radius: 6px;
+            padding: 28px 24px;
+            position: relative;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .card-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .card-item.c-red::after {
+            background: var(--red);
+        }
+
+        .card-item.c-yellow::after {
+            background: var(--yellow);
+        }
+
+        .card-item.c-green::after {
+            background: var(--green);
+        }
+
+        .card-item.c-blue::after {
+            background: var(--blue);
+        }
+
+        .card-item.c-wild::after {
+            background: linear-gradient(90deg, var(--red), var(--yellow), var(--green), var(--blue));
+        }
+
+        .card-emoji {
+            font-size: 30px;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .card-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .card-effect {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.65;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 2px;
+            padding: 3px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+        }
+
+        .badge-new {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .badge-classic {
+            background: #333;
+            color: #aaa;
+        }
+
+        /* ── RULES SECTION ── */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .rule-block {
+            background: var(--card-bg);
+            padding: 36px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .rule-block:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .rule-block.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .rule-number {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .rule-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .rule-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 14px;
+            color: var(--yellow);
+        }
+
+        .rule-desc {
+            color: rgba(255, 255, 255, 0.62);
+            line-height: 1.75;
+            font-size: 15px;
+        }
+
+        .rule-example {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--red);
+            padding: 14px 18px;
+            border-radius: 0 4px 4px 0;
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.65;
+        }
+
+        .rule-example strong {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .stack-flow {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .stack-pill {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        .sp-red {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .sp-blue {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        .sp-yellow {
+            background: var(--yellow);
+            color: #111;
+        }
+
+        .sp-green {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .sp-arrow {
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .sp-total {
+            border: 2px solid var(--red);
+            color: var(--red);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 6px 14px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+        }
+
+        /* ── SCORING ── */
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .score-table th {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            text-align: left;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .score-table td {
+            padding: 14px 20px;
+            font-size: 15px;
+            border-bottom: 1px solid var(--border);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .score-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .score-val {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: var(--yellow);
+        }
+
+        /* ── COMPARISON ── */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .compare-table th {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            letter-spacing: 2px;
+            padding: 18px 24px;
+            text-align: left;
+            background: var(--card-bg);
+            border-bottom: 2px solid var(--border);
+        }
+
+        .compare-table th:nth-child(2) {
+            color: var(--muted);
+        }
+
+        .compare-table th:nth-child(3) {
+            color: var(--red);
+        }
+
+        .compare-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border);
+            color: rgba(255, 255, 255, 0.65);
+            vertical-align: top;
+        }
+
+        .compare-table td:first-child {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .compare-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .yes {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .no {
+            color: var(--muted);
+        }
+
+        /* ── TIPS ── */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .tip-card {
+            background: var(--card-bg);
+            padding: 36px 28px;
+            transition: background 0.3s;
+        }
+
+        .tip-card:hover {
+            background: #222;
+        }
+
+        .tip-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--red);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .tip-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .tip-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: var(--dark);
+            text-align: center;
+            padding: 60px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+
+        .footer-sub {
+            font-size: 14px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-colors {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 28px;
+        }
+
+        .footer-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ── CARD TABS JS HIDE ── */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: grid;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            .objective-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rules-grid .rule-block.full-width {
+                grid-column: 1;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                grid-template-columns: 48px 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div style="position:relative; z-index:1;">
+            <div class="hero-greeting">Halo Warga DMO, Its No Mercy!</div>
+            <div class="hero-badge">Panduan Lengkap Bahasa Indonesia</div>
+            <h1>
+                <span class="line1">UNO</span>
+                <span class="line2">NO MERCY</span>
+                <span class="line3">SHOW 'EM</span>
+            </h1>
+            <p class="hero-sub">
+                Versi UNO paling brutal dan kejam yang pernah ada. 168 kartu, aturan tanpa ampun, eliminasi pemain — ini
+                bukan UNO biasa.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">168</div>
+                    <div class="stat-label">Total Kartu</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">2–6</div>
+                    <div class="stat-label">Pemain</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">25</div>
+                    <div class="stat-label">Batas Eliminasi</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">1000</div>
+                    <div class="stat-label">Target Poin</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Scroll
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+     OBJECTIVE
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Tentang Permainan</div>
+        <h2 class="section-title">Tujuan &amp; Cara Menang</h2>
+        <div class="objective-grid">
+            <div class="obj-card red">
+                <span class="obj-icon">🎴</span>
+                <div class="obj-title">Habiskan Semua Kartu</div>
+                <p class="obj-desc">
+                    Cara klasik seperti UNO biasa — jadilah pemain pertama yang berhasil membuang seluruh kartu dari
+                    tanganmu. Saat tersisa 1 kartu, wajib teriak <strong>"UNO!"</strong> — jika ketahuan tidak
+                    berteriak, kamu harus mengambil 2 kartu tambahan.
+                </p>
+            </div>
+            <div class="obj-card yellow">
+                <span class="obj-icon">💀</span>
+                <div class="obj-title">Eliminasi Semua Lawan</div>
+                <p class="obj-desc">
+                    Cara baru yang unik di No Mercy — paksa lawan mengumpulkan kartu hingga mencapai 25 kartu atau lebih
+                    di tangan mereka. Pemain yang mencapai batas ini otomatis <strong>tersingkir dari
+                        permainan</strong>. Jadilah satu-satunya yang tersisa!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══════════════════════════════════════════
+     SETUP
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Sebelum Bermain</div>
+        <h2 class="section-title">Persiapan Permainan</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <h3>Pilih Dealer</h3>
+                    <p>Tentukan satu orang sebagai dealer. Karena deck terdiri dari 168 kartu yang cukup banyak, dealer
+                        boleh membagi deck menjadi beberapa tumpukan lalu mengocok masing-masing sebelum digabungkan
+                        kembali.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <h3>Bagikan 7 Kartu</h3>
+                    <p>Dealer membagikan tepat <strong>7 kartu</strong> kepada setiap pemain secara tertutup. Pemain
+                        hanya boleh melihat kartunya sendiri, tidak boleh menunjukkan ke pemain lain. Permainan ini
+                        mendukung 2 hingga 6 pemain.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <h3>Siapkan Draw Pile & Discard Pile</h3>
+                    <p>Sisa kartu diletakkan tertutup di tengah meja sebagai <strong>Draw Pile</strong>. Balik satu
+                        kartu dari atas untuk membentuk <strong>Discard Pile</strong>. Penting: jika kartu yang terbuka
+                        adalah kartu aksi, geser ke bawah dan balik kartu berikutnya hingga mendapat kartu angka.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-content">
+                    <h3>Mulai Bermain</h3>
+                    <p>Pemain di sebelah kiri dealer memulai giliran pertama. Arah permainan berlanjut searah jarum jam
+                        kecuali ada kartu Reverse yang dimainkan. Setiap giliran, cocokkan kartu berdasarkan
+                        <strong>warna</strong>, <strong>angka</strong>, atau <strong>simbol</strong>.
+                    </p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">05</div>
+                <div class="step-content">
+                    <h3>Jika Tidak Bisa Main</h3>
+                    <p>Berbeda dengan UNO klasik yang hanya mengambil 1 kartu, di No Mercy kamu harus terus mengambil
+                        kartu dari Draw Pile <strong>sampai mendapat kartu yang bisa dimainkan</strong>. Semua kartu
+                        yang diambil masuk ke tanganmu. Hati-hati, ini bisa cepat membawamu ke batas eliminasi!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══════════════════════════════════════════
+     CARDS
+════════════════════════════════════════════ -->
+    <section class="cards-section">
+        <div class="cards-inner">
+            <div class="section-label">Daftar Kartu</div>
+            <h2 class="section-title">Semua Jenis Kartu</h2>
+
+            <div class="cards-tabs">
+                <button class="tab-btn active" onclick="showTab('classic')">Kartu Klasik</button>
+                <button class="tab-btn" onclick="showTab('action')">Kartu Aksi Baru</button>
+                <button class="tab-btn" onclick="showTab('wild')">Kartu Wild Baru</button>
+            </div>
+
+            <!-- CLASSIC -->
+            <div id="tab-classic" class="tab-panel active cards-grid">
+                <div class="card-item c-red">
+                    <span class="card-badge badge-classic">Klasik</span>
+                    <span class="card-emoji">🔢</span>
+                    <div class="card-name">Kartu Angka (0–9)</div>
+                    <div class="card-effect">Mainkan dengan mencocokkan warna atau angka yang sama dengan kartu di atas
+                        Discard Pile. Kartu angka adalah kartu paling dasar di permainan ini.</div>
+                </div>
+                <div class="card-item c-blue">
+                    <span class="card-badge badge-classic">Klasik</span>
+                    <span class="card-emoji">⏭️</span>
+                    <div class="card-name">Skip</div>
+                    <div class="card-effect">Giliran pemain berikutnya dilewati. Mereka tidak bisa bermain dan harus
+                        menunggu giliran selanjutnya.</div>
+                </div>
+                <div class="card-item c-green">
+                    <span class="card-badge badge-classic">Klasik</span>
+                    <span class="card-emoji">🔄</span>
+                    <div class="card-name">Reverse</div>
+                    <div class="card-effect">Membalik arah permainan — dari searah jarum jam menjadi berlawanan, atau
+                        sebaliknya. Dengan 2 pemain, kartu ini berfungsi seperti Skip.</div>
+                </div>
+                <div class="card-item c-yellow">
+                    <span class="card-badge badge-classic">Klasik</span>
+                    <span class="card-emoji">+2</span>
+                    <div class="card-name">Draw Two (+2)</div>
+                    <div class="card-effect">Pemain berikutnya harus mengambil 2 kartu dan kehilangan giliran mereka —
+                        kecuali mereka bisa menumpuk (stack) dengan kartu Draw lainnya.</div>
+                </div>
+            </div>
+
+            <!-- ACTION BARU -->
+            <div id="tab-action" class="tab-panel cards-grid">
+                <div class="card-item c-red">
+                    <span class="card-badge badge-new">Baru</span>
+                    <span class="card-emoji">⏭️⏭️</span>
+                    <div class="card-name">Skip Everyone</div>
+                    <div class="card-effect">Semua pemain lain dilewati gilirannya sekaligus. Pemain yang memainkan
+                        kartu ini langsung mendapat giliran lagi! Sangat kuat saat hampir menang.</div>
+                </div>
+                <div class="card-item c-blue">
+                    <span class="card-badge badge-new">Baru</span>
+                    <span class="card-emoji">🗑️</span>
+                    <div class="card-name">Discard All</div>
+                    <div class="card-effect">Buang semua kartu di tanganmu yang memiliki warna yang sama dengan kartu
+                        Discard All yang dimainkan. Letakkan kartu-kartu tambahan di bawah kartu Discard All. Cara
+                        tercepat menguras tangan!</div>
+                </div>
+            </div>
+
+            <!-- WILD BARU -->
+            <div id="tab-wild" class="tab-panel cards-grid">
+                <div class="card-item c-wild">
+                    <span class="card-badge badge-new">Wild Baru</span>
+                    <span class="card-emoji">+6</span>
+                    <div class="card-name">Wild Draw 6</div>
+                    <div class="card-effect">Pilih warna baru, lalu pemain berikutnya harus mengambil 6 kartu dan
+                        kehilangan giliran. Bisa di-stack dengan kartu Draw bernilai sama atau lebih tinggi.</div>
+                </div>
+                <div class="card-item c-wild">
+                    <span class="card-badge badge-new">Wild Baru</span>
+                    <span class="card-emoji">+10</span>
+                    <div class="card-name">Wild Draw 10</div>
+                    <div class="card-effect">Kartu paling brutal! Pilih warna baru, lalu pemain berikutnya harus
+                        mengambil 10 kartu sekaligus dan kehilangan giliran. Bisa di-stack dengan Draw 10 lainnya.</div>
+                </div>
+                <div class="card-item c-wild">
+                    <span class="card-badge badge-new">Wild Baru</span>
+                    <span class="card-emoji">🔄+4</span>
+                    <div class="card-name">Wild Reverse Draw 4</div>
+                    <div class="card-effect">Balikkan arah permainan, lalu pemain berikutnya di arah baru harus
+                        mengambil 4 kartu dan kehilangan giliran. Dengan 2 pemain, kartu ini memaksamu mengambil 4
+                        sendiri!</div>
+                </div>
+                <div class="card-item c-wild">
+                    <span class="card-badge badge-new">Wild Baru</span>
+                    <span class="card-emoji">🎰</span>
+                    <div class="card-name">Wild Color Roulette</div>
+                    <div class="card-effect">Pemain berikutnya memilih satu warna, lalu harus mengambil kartu satu per
+                        satu dari Draw Pile hingga mendapat kartu dengan warna yang dipilih. Semua kartu yang diambil
+                        masuk ke tangan. Kartu Wild tidak dihitung!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+     SPECIAL RULES
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Aturan Khusus</div>
+        <h2 class="section-title">4 Aturan Utama</h2>
+        <div class="rules-grid">
+
+            <!-- STACKING -->
+            <div class="rule-block full-width">
+                <div class="rule-number">1</div>
+                <span class="rule-icon">📚</span>
+                <div class="rule-title">Stacking Rule — Menumpuk Hukuman</div>
+                <p class="rule-desc">
+                    Ini adalah aturan paling seru di No Mercy. Ketika seseorang memainkan kartu Draw (+2, +4, +6, atau
+                    +10), pemain berikutnya <strong>tidak harus langsung mengambil kartu</strong> — mereka bisa
+                    memainkan kartu Draw dari tangan mereka sendiri yang nilainya <strong>sama atau lebih
+                        tinggi</strong> untuk meneruskan hukuman ke pemain selanjutnya. Hukuman terus menumpuk sampai
+                    ada pemain yang tidak bisa memainkan kartu Draw, dan pemain itulah yang harus mengambil total
+                    seluruh hukuman yang sudah menumpuk. Warna kartu tidak berpengaruh — hanya nilai yang penting!
+                </p>
+                <div class="stack-flow">
+                    <span class="stack-pill sp-red">Pemain A: +4</span>
+                    <span class="sp-arrow">→</span>
+                    <span class="stack-pill sp-blue">Pemain B: +2</span>
+                    <span class="sp-arrow">→</span>
+                    <span class="stack-pill sp-green">Pemain C: +6</span>
+                    <span class="sp-arrow">→</span>
+                    <span class="stack-pill sp-yellow">Pemain D: ❌</span>
+                    <span class="sp-arrow">=</span>
+                    <span class="sp-total">AMBIL 12 KARTU!</span>
+                </div>
+            </div>
+
+            <!-- MERCY RULE -->
+            <div class="rule-block">
+                <div class="rule-number">2</div>
+                <span class="rule-icon">💀</span>
+                <div class="rule-title">Mercy Rule — Eliminasi</div>
+                <p class="rule-desc">
+                    Jika di akhir giliran seorang pemain memiliki <strong>25 kartu atau lebih</strong> di tangannya,
+                    mereka langsung tersingkir dari permainan. Kartu-kartu milik pemain yang tereliminasi dikesampingkan
+                    — jika Draw Pile habis, baru kartu tersebut dikocok masuk kembali. Pemain yang tereliminasi
+                    memberikan 250 poin bonus kepada pemenang ronde.
+                </p>
+                <div class="rule-example">
+                    <strong>Strategi:</strong> Gunakan stacking, Skip Everyone, dan Wild Draw 10 secara agresif untuk
+                    mendorong lawan mencapai batas 25 kartu lebih cepat.
+                </div>
+            </div>
+
+            <!-- 7-SWAP -->
+            <div class="rule-block">
+                <div class="rule-number">3</div>
+                <span class="rule-icon">🔁</span>
+                <div class="rule-title">Aturan 7 — Tukar Tangan</div>
+                <p class="rule-desc">
+                    Ketika kamu memainkan kartu angka <strong>7</strong> (warna apa pun), kamu HARUS menukar seluruh
+                    kartu di tanganmu dengan kartu milik pemain lain pilihanmu. Tidak bisa dilewati — ini bukan pilihan,
+                    ini wajib! Gunakan ini untuk membuang tangan yang buruk atau mengambil tangan lawan yang hampir
+                    menang.
+                </p>
+                <div class="rule-example">
+                    <strong>Taktik jahat:</strong> Mainkan kartu 7 ke pemain yang sedang hampir menang (punya sedikit
+                    kartu) untuk mengambil keuntungan dari posisi mereka!
+                </div>
+            </div>
+
+            <!-- 0-PASS -->
+            <div class="rule-block">
+                <div class="rule-number">4</div>
+                <span class="rule-icon">🔃</span>
+                <div class="rule-title">Aturan 0 — Giliran Tangan</div>
+                <p class="rule-desc">
+                    Ketika kartu angka <strong>0</strong> (warna apa pun) dimainkan, <strong>SEMUA pemain</strong>
+                    (termasuk yang memainkan kartu 0) harus meneruskan seluruh kartu di tangan mereka ke pemain
+                    berikutnya sesuai arah permainan saat ini. Ini bisa sepenuhnya mengacaukan strategi semua orang
+                    dalam satu gerakan!
+                </p>
+                <div class="rule-example">
+                    <strong>Perhatian:</strong> Ini berlaku untuk semua pemain sekaligus, termasuk dirimu sendiri.
+                    Pastikan posisimu menguntungkan sebelum memainkan kartu 0!
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══════════════════════════════════════════
+     SCORING
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Sistem Poin</div>
+        <h2 class="section-title">Perhitungan Skor</h2>
+        <p style="color:rgba(255,255,255,0.55); margin-bottom:36px; max-width:600px; line-height:1.7; font-size:15px;">
+            Pemenang ronde mengumpulkan semua kartu yang tersisa di tangan pemain lain dan menghitung nilainya. Pemain
+            pertama yang mencapai <strong style="color:var(--yellow)">1.000 poin</strong> memenangkan keseluruhan
+            permainan.
+        </p>
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Jenis Kartu</th>
+                    <th>Nilai Poin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Kartu Angka (0–9)</td>
+                    <td><span class="score-val">Nilai Muka</span></td>
+                </tr>
+                <tr>
+                    <td>Skip, Reverse, Draw 2, Skip Everyone, Discard All, Wild Draw 4</td>
+                    <td><span class="score-val">20 poin</span></td>
+                </tr>
+                <tr>
+                    <td>Wild Color Roulette, Wild Draw 6, Wild Draw 10, Wild Reverse Draw 4</td>
+                    <td><span class="score-val">50 poin</span></td>
+                </tr>
+                <tr>
+                    <td>Bonus per pemain yang tereliminasi (Mercy Rule)</td>
+                    <td><span class="score-val" style="color:var(--red)">+250 poin</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══════════════════════════════════════════
+     COMPARISON
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Perbandingan</div>
+        <h2 class="section-title">UNO Klasik vs No Mercy</h2>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th>Aspek</th>
+                    <th>UNO Klasik</th>
+                    <th>UNO No Mercy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jumlah Kartu</td>
+                    <td>112 kartu</td>
+                    <td class="yes">168 kartu</td>
+                </tr>
+                <tr>
+                    <td>Stacking Kartu Draw</td>
+                    <td class="no">Tidak resmi (house rule)</td>
+                    <td class="yes">Resmi & wajib</td>
+                </tr>
+                <tr>
+                    <td>Eliminasi Pemain</td>
+                    <td class="no">Tidak ada</td>
+                    <td class="yes">Ada (Mercy Rule, 25 kartu)</td>
+                </tr>
+                <tr>
+                    <td>Aturan 7 & 0</td>
+                    <td class="no">Tidak ada</td>
+                    <td class="yes">Ada (tukar & gilirkan tangan)</td>
+                </tr>
+                <tr>
+                    <td>Kartu Draw Terbesar</td>
+                    <td>+4</td>
+                    <td class="yes">+10</td>
+                </tr>
+                <tr>
+                    <td>Wild Color Roulette</td>
+                    <td class="no">Tidak ada</td>
+                    <td class="yes">Ada (draw sampai dapat warna)</td>
+                </tr>
+                <tr>
+                    <td>Skip Everyone</td>
+                    <td class="no">Tidak ada</td>
+                    <td class="yes">Ada (skip semua pemain)</td>
+                </tr>
+                <tr>
+                    <td>Discard All</td>
+                    <td class="no">Tidak ada</td>
+                    <td class="yes">Ada (buang semua 1 warna)</td>
+                </tr>
+                <tr>
+                    <td>Tantang Wild Draw 4</td>
+                    <td class="yes">Bisa</td>
+                    <td class="no">Dihapus</td>
+                </tr>
+                <tr>
+                    <td>Mengambil Kartu (tidak bisa main)</td>
+                    <td>Hanya 1 kartu</td>
+                    <td class="yes">Terus sampai dapat kartu</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- ═══════════════════════════════════════════
+     TIPS
+════════════════════════════════════════════ -->
+    <section class="section">
+        <div class="section-label">Strategi</div>
+        <h2 class="section-title">Tips & Strategi Menang</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <span class="tip-num">TIP 01</span>
+                <div class="tip-title">Simpan Kartu Draw Tinggi</div>
+                <p class="tip-text">Selalu simpan minimal satu kartu Draw bernilai tinggi (+6 atau +10) di tanganmu.
+                    Kartu ini adalah penyelamat saat seseorang memainkan kartu Draw ke arahmu — stack balik dan teruskan
+                    hukumannya.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">TIP 02</span>
+                <div class="tip-title">Incar Pemain dengan Sedikit Kartu</div>
+                <p class="tip-text">Fokuskan serangan Draw Card dan Skip Everyone ke pemain yang hampir menang (punya
+                    sedikit kartu). Jangan biarkan mereka bernapas — hantam terus sampai tangan mereka penuh kembali.
+                </p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">TIP 03</span>
+                <div class="tip-title">Gunakan Kartu 7 dengan Cerdas</div>
+                <p class="tip-text">Mainkan kartu 7 hanya saat tangan lawan sedang bagus (sedikit kartu) dan tanganmu
+                    sedang buruk. Menukar tangan yang isi 10+ kartu dengan tangan lawan yang isi 2–3 kartu adalah
+                    keuntungan besar.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">TIP 04</span>
+                <div class="tip-title">Waspada Kartu 0</div>
+                <p class="tip-text">Sebelum bermain kartu 0, perhatikan posisi tangan semua pemain. Jika tangan pemain
+                    di sebelah kirimu penuh kartu, mainkan kartu 0 agar kamu menerima tangan yang buruk itu, bukan malah
+                    memberikan tangan bagusmu.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">TIP 05</span>
+                <div class="tip-title">Manfaatkan Discard All</div>
+                <p class="tip-text">Kartu Discard All adalah cara tercepat untuk menguras tangan. Sebelum memainkannya,
+                    pastikan kamu punya banyak kartu dengan warna yang sama agar bisa membuang sebanyak mungkin
+                    sekaligus dalam satu giliran.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">TIP 06</span>
+                <div class="tip-title">Jangan Lupa Teriak UNO!</div>
+                <p class="tip-text">Di No Mercy, hukumannya sangat besar dan cepat. Selalu ingat teriak "UNO!" saat
+                    tersisa 1 kartu. Melupakan ini saat lawan sedang aktif memperhatikan bisa berarti kamu harus
+                    mengambil 2 kartu tambahan di saat kritis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="footer-title">NAMANYA JUGA UNO</div>
+        <div class="footer-sub" Every game has it own rules </div>
+            <div class="footer-colors">
+                <div class="footer-dot" style="background:var(--red)"></div>
+                <div class="footer-dot" style="background:var(--yellow)"></div>
+                <div class="footer-dot" style="background:var(--green)"></div>
+                <div class="footer-dot" style="background:var(--blue)"></div>
+            </div>
+    </footer>
+
+    <script>
+        function showTab(name) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Scroll-triggered fade-in
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.obj-card, .rule-block, .tip-card, .card-item, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            obs.observe(el);
+        });
+    </script>
+</body>
+
+</html>
